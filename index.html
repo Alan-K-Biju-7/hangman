@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hangman Game</title>
+<style>
+body{font-family:system-ui;background:#0b1020;color:#eaf0ff;padding:20px}
+#app{max-width:900px;margin:auto}
+main{display:grid;grid-template-columns:1fr 300px;gap:16px}
+section{background:rgba(255,255,255,.08);padding:16px;border-radius:14px}
+</style>
+</head>
+<body>
+  <div id="app">
+  <header><h1>Hangman Game</h1>
+<button id="newGame">New Game</button>
+<button id="hint">Hint</button>
+<button id="reveal">Reveal</button></header>
+  <main>
+    <section id="game">
+  <div id="word" style="display:flex;gap:10px;font-size:24px;"></div>
+  <div id="keyboard" style="margin-top:12px;display:grid;grid-template-columns:repeat(10,1fr);gap:8px;"></div>
+</section>
+    <section id="panel"></section>
+  </main>
+</div>
+<script>
+const words=["PYTHON","ALGORITHM","HANGMAN","SEARCH"];
+let answer=words[Math.floor(Math.random()*words.length)];
+let revealed=new Set();
+
+function renderWord(){
+ const box=document.getElementById("word");
+ box.innerHTML="";
+ for(const c of answer){const s=document.createElement("span");s.textContent=revealed.has(c)?c:"_";box.appendChild(s);}
+}
+renderWord();
+
+const keys="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+const kb=document.getElementById("keyboard");
+keys.forEach(k=>{const b=document.createElement("button");b.textContent=k;
+b.onclick=()=>{if(answer.includes(k)){revealed.add(k);renderWord();}b.disabled=true;};kb.appendChild(b);});
+</script>
+</body>
+</html>

@@ -9,14 +9,57 @@ const WORDS = [
 ];
 
 const keys = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
 const kb = $("keyboard");
 const wordBox = $("word");
+
+const parts = [
+  $("h-head"),
+  $("h-body"),
+  $("h-larm"),
+  $("h-rarm"),
+  $("h-lleg"),
+  $("h-rleg"),
+];
+
+const toastEl = $("toast");
+const toastTagEl = $("toastTag");
+const toastTextEl = $("toastText");
+let toastTimer = null;
+
+function showToast(tag, text){
+  toastTagEl.textContent = tag;
+  toastTextEl.textContent = text;
+  toastEl.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove("show"), 1600);
+}
 
 let answer = "";
 let hint = "";
 let revealed = new Set();
+let wrong = new Set();
+
+let livesMax = 6;
+let lives = 6;
+
+let roundLocked = false;
+
+let score = Number(localStorage.getItem("hm_score") || 0);
+let streak = Number(localStorage.getItem("hm_streak") || 0);
+
+function setDifficulty(){
+  const v = $("difficulty")?.value || "normal";
+  livesMax = (v === "easy") ? 8 : (v === "hard") ? 5 : 6;
+}
 
 function pickWord(){
+  setDifficulty();
+  roundLocked = false;
+  wrong = new Set();
+  lives = livesMax;
+  parts.forEach(p => p.style.opacity = "0");
+
   const item = WORDS[Math.floor(Math.random()*WORDS.length)];
   answer = item.w;
   hint = item.h;
@@ -33,28 +76,148 @@ function renderWord(){
   }
 }
 
-function renderKeyboard(onClick){
+function drawHangman(){
+  const shown = livesMax - lives;
+  parts.forEach((p,i) => p.style.opacity = (i < shown ? "1" : "0"));
+  const frac = livesMax ? (lives / livesMax) : 0;
+  $("lifeBar").style.transform = `scaleX(${Math.max(0, Math.min(1, frac))})`;
+}
+
+function isWin(){
+  for(const ch of answer){
+    if(ch === " ") continue;
+    if(!revealed.has(ch)) return false;
+  }
+  return true;
+}
+
+function lockKeyboard(){
+  roundLocked = true;
+  $("hangmanSvg").classList.add("shake");
+  kb.querySelectorAll("button").forEach(b => b.disabled = true);
+}
+
+function updateHud(){
+  $("pillLives").textContent = `Lives: ${lives}`;
+  $("pillWrong").textContent = wrong.size ? `Wrong: ${[...wrong].join(", ")}` : "Wrong: —";
+  $("pillScore").textContent = `Score: ${score}`;
+  $("pillStreak").textContent = `Streak: ${streak}`;
+  drawHangman();
+}
+
+function handler(k, btn){
+  if(roundLocked) return;
+
+  if(answer.includes(k)){
+    revealed.add(k);
+    score += 10;
+    $("status").textContent = `Correct: ${k}`;
+    showToast("Correct", `${k} is in the word`);
+  }else{
+    wrong.add(k);
+    lives -= 1;
+    score = Math.max(0, score - 2);
+    $("status").textContent = `Wrong: ${k}`;
+    showToast("Wrong", `${k} is not in the word`);
+  }
+
+  btn.disabled = true;
+  if(answer.includes(k)) btn.classList.add("good");
+  else btn.classList.add("bad");
+
+  renderWord();
+  updateHud();
+
+  if(isWin()){
+    streak += 1;
+    score += 25;
+    localStorage.setItem("hm_score", String(score));
+    localStorage.setItem("hm_streak", String(streak));
+    $("status").textContent = `You Win 🎉 Answer: ${answer}`;
+    showToast("Win", "Nice! +25 bonus");
+    lockKeyboard();
+  }
+
+  if(lives <= 0){
+    parts.forEach(p => p.style.opacity = "1");
+    streak = 0;
+    localStorage.setItem("hm_score", String(score));
+    localStorage.setItem("hm_streak", String(streak));
+    $("status").textContent = `Game Over 💀 Answer: ${answer}`;
+    showToast("Lose", "Streak reset");
+    lockKeyboard();
+  }
+}
+
+function renderKeyboard(){
   kb.innerHTML = "";
   keys.forEach((k) => {
     const b = document.createElement("button");
     b.className = "key";
     b.textContent = k;
-    b.addEventListener("click", () => onClick(k, b));
+    b.addEventListener("click", () => handler(k, b));
     kb.appendChild(b);
   });
 }
 
-pickWord();
-renderWord();
-$("status").textContent = "Pick a letter.";
-$("hintLine").textContent = "";
-renderKeyboard((k, btn) => {
-  if(answer.includes(k)){
-    revealed.add(k);
-    renderWord();
-    $("status").textContent = `Correct: ${k}`;
-  }else{
-    $("status").textContent = `Wrong: ${k}`;
-  }
-  btn.disabled = true;
+function startRound(message){
+  pickWord();
+  renderWord();
+  renderKeyboard();
+  $("hangmanSvg").classList.remove("shake");
+  $("status").textContent = message || "Pick a letter.";
+  $("hintLine").textContent = "";
+  updateHud();
+}
+
+$("btnNew").addEventListener("click", () => {
+  localStorage.setItem("hm_score", String(score));
+  localStorage.setItem("hm_streak", String(streak));
+  startRound("New game started.");
+  showToast("New", "New game started");
 });
+
+$("btnHint").addEventListener("click", () => {
+  if(roundLocked) return;
+  if(lives <= 1){ showToast("Hint", "Need at least 2 lives"); return; }
+  lives -= 1;
+  $("hintLine").textContent = `Hint: ${hint}`;
+  updateHud();
+  showToast("Hint", "Hint shown (-1 life)");
+  if(lives <= 0){
+    parts.forEach(p => p.style.opacity = "1");
+    streak = 0;
+    localStorage.setItem("hm_score", String(score));
+    localStorage.setItem("hm_streak", String(streak));
+    $("status").textContent = `Game Over 💀 Answer: ${answer}`;
+    lockKeyboard();
+  }
+});
+
+$("btnReveal").addEventListener("click", () => {
+  for(const ch of answer){ if(ch !== " ") revealed.add(ch); }
+  renderWord();
+  $("status").textContent = `Revealed! Answer: ${answer}`;
+  showToast("Reveal", "Answer revealed");
+  lockKeyboard();
+});
+
+$("difficulty").addEventListener("change", () => {
+  startRound("Difficulty changed. New word loaded.");
+  showToast("Mode", "Difficulty updated");
+});
+
+window.addEventListener("keydown", (e) => {
+  const key = (e.key || "");
+  if(key === "Enter"){ $("btnNew").click(); return; }
+  if(key === "Backspace"){ $("btnReveal").click(); return; }
+  if(key.toLowerCase() === "h"){ $("btnHint").click(); return; }
+
+  const k = key.toUpperCase();
+  if(!/^[A-Z]$/.test(k)) return;
+
+  const btn = [...kb.querySelectorAll("button")].find(b => b.textContent === k);
+  if(btn && !btn.disabled) btn.click();
+});
+
+startRound("Pick a letter.");

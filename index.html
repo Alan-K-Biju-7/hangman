@@ -25,6 +25,18 @@
 
     <main class="grid">
       <section class="card">
+<svg id="hangmanSvg" width="260" height="220" viewBox="0 0 260 220">
+<path d="M20 200 L160 200" stroke="rgba(255,255,255,.4)" stroke-width="6"/>
+<path d="M60 200 L60 30" stroke="rgba(255,255,255,.4)" stroke-width="6"/>
+<path d="M60 30 L140 30" stroke="rgba(255,255,255,.4)" stroke-width="6"/>
+<path d="M140 30 L140 55" stroke="rgba(255,255,255,.4)" stroke-width="6"/>
+<circle id="h-head" cx="140" cy="75" r="18" stroke="#fff" stroke-width="4" fill="none" opacity="0"/>
+<path id="h-body" d="M140 93 L140 135" stroke="#fff" stroke-width="4" opacity="0"/>
+<path id="h-larm" d="M140 105 L120 120" stroke="#fff" stroke-width="4" opacity="0"/>
+<path id="h-rarm" d="M140 105 L160 120" stroke="#fff" stroke-width="4" opacity="0"/>
+<path id="h-lleg" d="M140 135 L125 165" stroke="#fff" stroke-width="4" opacity="0"/>
+<path id="h-rleg" d="M140 135 L155 165" stroke="#fff" stroke-width="4" opacity="0"/>
+</svg>
         <div class="hud">
           <div class="pill" id="pillLives">Lives: 6</div>
           <div class="pill" id="pillWrong">Wrong: —</div>

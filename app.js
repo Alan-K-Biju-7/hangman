@@ -70,6 +70,12 @@ function setDifficulty(){
   livesMax = (v === "easy") ? 8 : (v === "hard") ? 5 : 6;
 }
 
+
+function getCategoryWords(){
+  const c = $("category")?.value || "mixed";
+  return WORD_BANKS[c] || WORD_BANKS.mixed;
+}
+
 function pickWord(){
   setDifficulty();
   roundLocked = false;
@@ -77,7 +83,8 @@ function pickWord(){
   lives = livesMax;
   parts.forEach(p => p.style.opacity = "0");
 
-  const item = WORDS[Math.floor(Math.random()*WORDS.length)];
+  const pool = getCategoryWords();
+  const item = pool[Math.floor(Math.random()*pool.length)];
   answer = item.w;
   hint = item.h;
   revealed = new Set();
@@ -217,6 +224,11 @@ $("btnReveal").addEventListener("click", () => {
   $("status").textContent = `Revealed! Answer: ${answer}`;
   showToast("Reveal", "Answer revealed");
   lockKeyboard();
+});
+
+$("category").addEventListener("change", () => {
+  startRound("Category changed. New word loaded.");
+  showToast("Mode", "Category updated");
 });
 
 $("difficulty").addEventListener("change", () => {

@@ -70,7 +70,30 @@
     </main>
   </div>
 
-  <div id="toast" class="toast" aria-live="polite" aria-atomic="true">
+  
+  <div class="modal" id="helpModal" aria-hidden="true">
+    <div class="modalCard" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+      <div class="modalTop">
+        <h3 id="helpTitle">Help & Shortcuts</h3>
+        <button class="iconBtn" id="btnHelpClose" aria-label="Close">✕</button>
+      </div>
+      <div class="modalBody">
+        <ul>
+          <li><b>Click</b> letters or type on keyboard.</li>
+          <li><b>Enter</b>: New game</li>
+          <li><b>H</b>: Hint (costs 1 life)</li>
+          <li><b>Backspace</b>: Reveal</li>
+        </ul>
+        <p class="muted">Tip: Wrong guesses draw the hangman. Win gives bonus points.</p>
+      </div>
+      <div class="modalActions">
+        <button class="btn" id="btnHelpOk">Got it</button>
+      </div>
+    </div>
+  </div>
+
+
+<div id="toast" class="toast" aria-live="polite" aria-atomic="true">
     <span id="toastTag" class="toastTag">Info</span>
     <span id="toastText">…</span>
   </div>

@@ -250,6 +250,28 @@ window.addEventListener("keydown", (e) => {
 });
 
 
+
+function openCustom(){
+  const m = $("customModal");
+  $("customMsg").textContent = "";
+  $("customInput").value = "";
+  m.classList.add("show");
+  m.setAttribute("aria-hidden", "false");
+  setTimeout(() => $("customInput").focus(), 50);
+}
+function closeCustom(){
+  const m = $("customModal");
+  m.classList.remove("show");
+  m.setAttribute("aria-hidden", "true");
+}
+function normalizeCustomWord(raw){
+  const w = (raw || "").toUpperCase().trim();
+  if(!w) return { ok:false, msg:"Please type a word." };
+  if(!/^[A-Z ]+$/.test(w)) return { ok:false, msg:"Use letters A–Z and spaces only." };
+  if(w.replace(/ /g,"").length < 3) return { ok:false, msg:"Word too short (min 3 letters)." };
+  return { ok:true, word:w };
+}
+
 function openHelp(){
   const m = $("helpModal");
   m.classList.add("show");
@@ -262,6 +284,21 @@ function closeHelp(){
 }
 
 $("btnHelp").addEventListener("click", openHelp);
+
+$("btnCustom").addEventListener("click", openCustom);
+$("btnCustomClose").addEventListener("click", closeCustom);
+$("customModal").addEventListener("click", (e) => {
+  if(e.target && e.target.id === "customModal") closeCustom();
+});
+$("btnCustomStart").addEventListener("click", () => {
+  const res = normalizeCustomWord($("customInput").value);
+  if(!res.ok){ $("customMsg").textContent = res.msg; return; }
+  window.__HM_CUSTOM__ = res.word;
+  closeCustom();
+  startRound("Custom word loaded.");
+  showToast("Custom", "Custom word started");
+});
+
 $("btnHelpClose").addEventListener("click", closeHelp);
 $("btnHelpOk").addEventListener("click", closeHelp);
 

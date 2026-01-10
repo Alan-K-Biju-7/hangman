@@ -308,6 +308,15 @@ $("btnCustomStart").addEventListener("click", () => {
 
 $("btnHelpClose").addEventListener("click", closeHelp);
 $("btnHelpOk").addEventListener("click", closeHelp);
+$("btnResetStats").addEventListener("click", () => {
+  score = 0;
+  streak = 0;
+  localStorage.setItem("hm_score", "0");
+  localStorage.setItem("hm_streak", "0");
+  $("pillScore").textContent = "Score: 0";
+  $("pillStreak").textContent = "Streak: 0";
+  showToast("Reset", "Score & streak cleared");
+});
 
 $("helpModal").addEventListener("click", (e) => {
   if(e.target && e.target.id === "helpModal") closeHelp();

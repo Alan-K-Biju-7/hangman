@@ -83,6 +83,13 @@ function pickWord(){
   lives = livesMax;
   parts.forEach(p => p.style.opacity = "0");
 
+  const custom = (window.__HM_CUSTOM__ || "").trim();
+  if(custom){
+    answer = custom;
+    hint = "Custom word";
+    window.__HM_CUSTOM__ = "";
+    return;
+  }
   const pool = getCategoryWords();
   const item = pool[Math.floor(Math.random()*pool.length)];
   answer = item.w;

@@ -220,4 +220,24 @@ window.addEventListener("keydown", (e) => {
   if(btn && !btn.disabled) btn.click();
 });
 
+
+function openHelp(){
+  const m = $("helpModal");
+  m.classList.add("show");
+  m.setAttribute("aria-hidden", "false");
+}
+function closeHelp(){
+  const m = $("helpModal");
+  m.classList.remove("show");
+  m.setAttribute("aria-hidden", "true");
+}
+
+$("btnHelp").addEventListener("click", openHelp);
+$("btnHelpClose").addEventListener("click", closeHelp);
+$("btnHelpOk").addEventListener("click", closeHelp);
+
+$("helpModal").addEventListener("click", (e) => {
+  if(e.target && e.target.id === "helpModal") closeHelp();
+});
+
 startRound("Pick a letter.");

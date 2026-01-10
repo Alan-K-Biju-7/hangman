@@ -1,12 +1,29 @@
 const $ = (id) => document.getElementById(id);
 
-const WORDS = [
-  { w: "PYTHON", h: "Popular programming language" },
-  { w: "ALGORITHM", h: "Step-by-step procedure" },
-  { w: "RECURSION", h: "Function calls itself" },
-  { w: "HEURISTIC", h: "Helpful estimate to guide search" },
-  { w: "THE DARK KNIGHT", h: "Batman vs Joker" }
-];
+const WORD_BANKS = {
+  mixed: [
+    { w: "PYTHON", h: "Popular programming language" },
+    { w: "ALGORITHM", h: "Step-by-step procedure" },
+    { w: "RECURSION", h: "Function calls itself" },
+    { w: "HEURISTIC", h: "Helpful estimate to guide search" },
+    { w: "THE DARK KNIGHT", h: "Batman vs Joker" }
+  ],
+  cs: [
+    { w: "BINARY SEARCH", h: "Divide and conquer lookup" },
+    { w: "HASH TABLE", h: "Key-value structure" },
+    { w: "GRAPH THEORY", h: "Nodes and edges" },
+    { w: "DYNAMIC PROGRAMMING", h: "Overlapping subproblems" }
+  ],
+  movies: [
+    { w: "INTERSTELLAR", h: "Space + time" },
+    { w: "INCEPTION", h: "Dream within a dream" },
+    { w: "AVATAR", h: "Pandora" },
+    { w: "JURASSIC PARK", h: "Dinosaurs return" }
+  ]
+};
+
+
+
 
 const keys = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 

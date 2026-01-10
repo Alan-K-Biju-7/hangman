@@ -78,7 +78,25 @@
   </div>
 
   
-  <div class="modal" id="helpModal" aria-hidden="true">
+  
+  <div class="modal" id="customModal" aria-hidden="true">
+    <div class="modalCard" role="dialog" aria-modal="true" aria-labelledby="customTitle">
+      <div class="modalTop">
+        <h3 id="customTitle">Set a Custom Word</h3>
+        <button class="iconBtn" id="btnCustomClose" aria-label="Close">✕</button>
+      </div>
+      <div class="modalBody">
+        <p class="muted">Use letters and spaces only. Example: <b>DATA STRUCTURES</b></p>
+        <input id="customInput" class="select" style="width:100%" placeholder="Type your word..." />
+        <div class="muted" style="margin-top:8px" id="customMsg"></div>
+      </div>
+      <div class="modalActions">
+        <button class="btn" id="btnCustomStart">Start</button>
+      </div>
+    </div>
+  </div>
+
+<div class="modal" id="helpModal" aria-hidden="true">
     <div class="modalCard" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
       <div class="modalTop">
         <h3 id="helpTitle">Help & Shortcuts</h3>

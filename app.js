@@ -1,3 +1,14 @@
+
+let soundOn = JSON.parse(localStorage.getItem("hm_sound") || "true");
+
+const audioCorrect = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
+const audioWrong = new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
+const audioWin = new Audio("https://actions.google.com/sounds/v1/cartoon/ta_da.ogg");
+
+function playSound(a){
+  if(soundOn) a.play().catch(()=>{});
+}
+
 const $ = (id) => document.getElementById(id);
 
 const WORD_BANKS = {

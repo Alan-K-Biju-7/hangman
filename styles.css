@@ -219,3 +219,11 @@ h1{margin:0;font-size:18px}
   cursor:pointer;
 }
 .iconBtn:hover{border-color:rgba(255,255,255,.24)}
+
+
+body.light{
+  --bg:#f6f7fb;
+  --card:rgba(0,0,0,.04);
+  --text:#111;
+  --muted:#555;
+}

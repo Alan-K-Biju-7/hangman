@@ -344,4 +344,17 @@ $("helpModal").addEventListener("click", (e) => {
   if(e.target && e.target.id === "helpModal") closeHelp();
 });
 
+
+let theme = localStorage.getItem("hm_theme") || "dark";
+document.body.classList.toggle("light", theme==="light");
+
+function toggleTheme(){
+  theme = theme==="dark" ? "light" : "dark";
+  localStorage.setItem("hm_theme", theme);
+  document.body.classList.toggle("light", theme==="light");
+  showToast("Theme", theme==="light" ? "Light mode" : "Dark mode");
+}
+
+$("btnTheme").addEventListener("click", toggleTheme);
+
 startRound("Pick a letter.");

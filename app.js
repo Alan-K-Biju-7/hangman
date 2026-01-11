@@ -154,12 +154,14 @@ function handler(k, btn){
     revealed.add(k);
     score += 10;
     $("status").textContent = `Correct: ${k}`;
+    playSound(audioCorrect);
     showToast("Correct", `${k} is in the word`);
   }else{
     wrong.add(k);
     lives -= 1;
     score = Math.max(0, score - 2);
     $("status").textContent = `Wrong: ${k}`;
+    playSound(audioWrong);
     showToast("Wrong", `${k} is not in the word`);
   }
 
@@ -176,6 +178,7 @@ function handler(k, btn){
     localStorage.setItem("hm_score", String(score));
     localStorage.setItem("hm_streak", String(streak));
     $("status").textContent = `You Win 🎉 Answer: ${answer}`;
+    playSound(audioWin);
     showToast("Win", "Nice! +25 bonus");
     lockKeyboard();
   }

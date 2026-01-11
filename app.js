@@ -303,6 +303,14 @@ function closeHelp(){
 
 $("btnHelp").addEventListener("click", openHelp);
 
+$("btnSound").addEventListener("click", () => {
+  soundOn = !soundOn;
+  localStorage.setItem("hm_sound", JSON.stringify(soundOn));
+  $("btnSound").textContent = soundOn ? "🔊 Sound" : "🔇 Muted";
+  showToast("Sound", soundOn ? "Sound ON" : "Sound OFF");
+});
+
+
 $("btnCustom").addEventListener("click", openCustom);
 $("btnCustomClose").addEventListener("click", closeCustom);
 $("customModal").addEventListener("click", (e) => {

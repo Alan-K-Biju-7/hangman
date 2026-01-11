@@ -1,4 +1,7 @@
 
+let gamesPlayed = Number(localStorage.getItem("hm_games") || 0);
+let gamesWon = Number(localStorage.getItem("hm_wins") || 0);
+
 let soundOn = JSON.parse(localStorage.getItem("hm_sound") || "true");
 
 const audioCorrect = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
@@ -174,6 +177,8 @@ function handler(k, btn){
 
   if(isWin()){
     streak += 1;
+    gamesWon += 1;
+    localStorage.setItem("hm_wins", gamesWon);
     score += 25;
     localStorage.setItem("hm_score", String(score));
     localStorage.setItem("hm_streak", String(streak));
@@ -206,6 +211,8 @@ function renderKeyboard(){
 }
 
 function startRound(message){
+  gamesPlayed += 1;
+  localStorage.setItem("hm_games", gamesPlayed);
   pickWord();
   renderWord();
   renderKeyboard();

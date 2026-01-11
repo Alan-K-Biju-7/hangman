@@ -300,7 +300,15 @@ function normalizeCustomWord(raw){
   return { ok:true, word:w };
 }
 
+
+function renderStats(){
+  const gp = localStorage.getItem("hm_games") || 0;
+  const gw = localStorage.getItem("hm_wins") || 0;
+  $("helpTitle").textContent = `Help & Stats (Games: ${gp}, Wins: ${gw})`;
+}
+
 function openHelp(){
+  renderStats();
   const m = $("helpModal");
   m.classList.add("show");
   m.setAttribute("aria-hidden", "false");

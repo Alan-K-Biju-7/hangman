@@ -1,4 +1,6 @@
 
+let bestTime = Number(localStorage.getItem("hm_best_time") || 0);
+
 let gamesPlayed = Number(localStorage.getItem("hm_games") || 0);
 let gamesWon = Number(localStorage.getItem("hm_wins") || 0);
 
@@ -207,6 +209,12 @@ function handler(k, btn){
     playSound(audioWin);
     showToast("Win", "Nice! +25 bonus");
     stopTimer();
+    const winSec = Math.floor((Date.now() - t0) / 1000);
+    if(bestTime === 0 || winSec < bestTime){
+      bestTime = winSec;
+      localStorage.setItem("hm_best_time", String(bestTime));
+      showToast("Record", `Best time: ${bestTime}s`);
+    }
     lockKeyboard();
   }
 

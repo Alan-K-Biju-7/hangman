@@ -422,5 +422,16 @@ function toggleTheme(){
 
 $("btnTheme").addEventListener("click", toggleTheme);
 
+$("btnShare").addEventListener("click", async () => {
+  const url = location.href;
+  try{
+    await navigator.clipboard.writeText(url);
+    showToast("Share", "Link copied");
+  }catch{
+    showToast("Share", "Copy failed (browser blocked)");
+  }
+});
+
+
 startTimer();
 startRound("Pick a letter.");

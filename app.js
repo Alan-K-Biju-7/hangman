@@ -390,6 +390,21 @@ $("btnResetStats").addEventListener("click", () => {
   showToast("Reset", "Score & streak cleared");
 });
 
+$("btnResetAll").addEventListener("click", () => {
+  localStorage.removeItem("hm_score");
+  localStorage.removeItem("hm_streak");
+  localStorage.removeItem("hm_games");
+  localStorage.removeItem("hm_wins");
+  localStorage.removeItem("hm_best_time");
+  localStorage.removeItem("hm_best_score");
+  localStorage.removeItem("hm_sound");
+  localStorage.removeItem("hm_theme");
+  score = 0; streak = 0;
+  showToast("Reset", "All local data cleared");
+  location.reload();
+});
+
+
 $("helpModal").addEventListener("click", (e) => {
   if(e.target && e.target.id === "helpModal") closeHelp();
 });

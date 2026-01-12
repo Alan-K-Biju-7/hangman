@@ -1,4 +1,6 @@
 
+let bestScore = Number(localStorage.getItem("hm_best_score") || 0);
+
 let bestTime = Number(localStorage.getItem("hm_best_time") || 0);
 
 let gamesPlayed = Number(localStorage.getItem("hm_games") || 0);
@@ -169,6 +171,7 @@ function updateHud(){
   $("pillLives").textContent = `Lives: ${lives}`;
   $("pillWrong").textContent = wrong.size ? `Wrong: ${[...wrong].join(", ")}` : "Wrong: —";
   $("pillScore").textContent = `Score: ${score}`;
+  if(score > bestScore){ bestScore = score; localStorage.setItem("hm_best_score", String(bestScore)); }
   $("pillStreak").textContent = `Streak: ${streak}`;
   drawHangman();
 }

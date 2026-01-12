@@ -339,7 +339,7 @@ function normalizeCustomWord(raw){
 function renderStats(){
   const gp = localStorage.getItem("hm_games") || 0;
   const gw = localStorage.getItem("hm_wins") || 0;
-  $("helpTitle").textContent = `Help & Stats (Games: ${gp}, Wins: ${gw}, Best: ${localStorage.getItem("hm_best_time")||0}s)`;
+  $("helpTitle").textContent = `Help & Stats (Games: ${gp}, Wins: ${gw}, Best: ${localStorage.getItem("hm_best_time")||0}s, BestScore: ${localStorage.getItem("hm_best_score")||0})`;
 }
 
 function openHelp(){

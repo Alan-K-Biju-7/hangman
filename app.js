@@ -79,6 +79,27 @@ let roundLocked = false;
 let score = Number(localStorage.getItem("hm_score") || 0);
 let streak = Number(localStorage.getItem("hm_streak") || 0);
 
+
+let t0 = 0;
+let timerId = null;
+
+function tickTimer(){
+  const sec = Math.floor((Date.now() - t0) / 1000);
+  $("pillTime").textContent = `Time: ${sec}s`;
+}
+
+function startTimer(){
+  t0 = Date.now();
+  clearInterval(timerId);
+  timerId = setInterval(tickTimer, 250);
+  tickTimer();
+}
+
+function stopTimer(){
+  clearInterval(timerId);
+  timerId = null;
+}
+
 function setDifficulty(){
   const v = $("difficulty")?.value || "normal";
   livesMax = (v === "easy") ? 8 : (v === "hard") ? 5 : 6;
@@ -372,4 +393,5 @@ function toggleTheme(){
 
 $("btnTheme").addEventListener("click", toggleTheme);
 
+startTimer();
 startRound("Pick a letter.");

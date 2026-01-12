@@ -206,6 +206,7 @@ function handler(k, btn){
     $("status").textContent = `You Win 🎉 Answer: ${answer}`;
     playSound(audioWin);
     showToast("Win", "Nice! +25 bonus");
+    stopTimer();
     lockKeyboard();
   }
 
@@ -216,6 +217,7 @@ function handler(k, btn){
     localStorage.setItem("hm_streak", String(streak));
     $("status").textContent = `Game Over 💀 Answer: ${answer}`;
     showToast("Lose", "Streak reset");
+    stopTimer();
     lockKeyboard();
   }
 }
@@ -272,6 +274,7 @@ $("btnReveal").addEventListener("click", () => {
   renderWord();
   $("status").textContent = `Revealed! Answer: ${answer}`;
   showToast("Reveal", "Answer revealed");
+  stopTimer();
   lockKeyboard();
 });
 

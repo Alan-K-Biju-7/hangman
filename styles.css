@@ -227,3 +227,6 @@ body.light{
   --text:#111;
   --muted:#555;
 }
+
+
+.footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:14px;padding:10px 4px}

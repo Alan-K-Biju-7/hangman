@@ -43,6 +43,7 @@ const WORD_BANKS = {
 
 
 
+const qwertyRows = ["QWERTYUIOP","ASDFGHJKL","ZXCVBNM"];
 const keys = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 const kb = $("keyboard");
@@ -235,12 +236,14 @@ function handler(k, btn){
 
 function renderKeyboard(){
   kb.innerHTML = "";
-  keys.forEach((k) => {
-    const b = document.createElement("button");
-    b.className = "key";
-    b.textContent = k;
-    b.addEventListener("click", () => handler(k, b));
-    kb.appendChild(b);
+  qwertyRows.forEach(row => {
+    row.split("").forEach((k) => {
+      const b = document.createElement("button");
+      b.className = "key";
+      b.textContent = k;
+      b.addEventListener("click", () => handler(k, b));
+      kb.appendChild(b);
+    });
   });
 }
 

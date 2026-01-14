@@ -445,6 +445,27 @@ $("btnCustomStart").addEventListener("click", () => {
 
 $("btnHelpClose").addEventListener("click", closeHelp);
 $("btnHelpOk").addEventListener("click", closeHelp);
+$("btnExport").addEventListener("click", () => {
+  const data = {
+    score: Number(localStorage.getItem("hm_score")||0),
+    streak: Number(localStorage.getItem("hm_streak")||0),
+    games: Number(localStorage.getItem("hm_games")||0),
+    wins: Number(localStorage.getItem("hm_wins")||0),
+    bestTime: Number(localStorage.getItem("hm_best_time")||0),
+    bestScore: Number(localStorage.getItem("hm_best_score")||0),
+    perfect: Number(localStorage.getItem("hm_perfect")||0),
+    theme: localStorage.getItem("hm_theme")||"dark",
+    sound: localStorage.getItem("hm_sound")||"true",
+    exportedAt: new Date().toISOString()
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "hangman-stats.json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast("Export", "Stats downloaded");
+});
 $("btnResetStats").addEventListener("click", () => {
   score = 0;
   streak = 0;

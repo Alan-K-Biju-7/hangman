@@ -265,6 +265,7 @@ function handler(k, btn){
     $("status").textContent = `You Win 🎉 Answer: ${answer}`;
     playSound(audioWin);
     showToast("Win", "Nice! +25 bonus");
+    launchConfetti();
     stopTimer();
     const winSec = Math.floor((Date.now() - t0) / 1000);
     if(bestTime === 0 || winSec < bestTime){

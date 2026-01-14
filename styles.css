@@ -237,3 +237,16 @@ body.light{
   to{transform:scale(1);opacity:1}
 }
 .slot{animation:popIn .12s ease}
+
+
+#confetti{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  pointer-events:none;
+  z-index:110;
+  opacity:0;
+  transition:opacity .15s ease;
+}
+#confetti.show{opacity:1}

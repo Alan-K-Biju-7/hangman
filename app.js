@@ -105,6 +105,59 @@ function stopTimer(){
   timerId = null;
 }
 
+
+const confettiCanvas = $("confetti");
+const ctxConf = confettiCanvas.getContext("2d");
+let confettiRAF = null;
+
+function resizeConfetti(){
+  confettiCanvas.width = Math.floor(window.innerWidth * devicePixelRatio);
+  confettiCanvas.height = Math.floor(window.innerHeight * devicePixelRatio);
+  ctxConf.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+}
+window.addEventListener("resize", resizeConfetti);
+
+function launchConfetti(){
+  resizeConfetti();
+  confettiCanvas.classList.add("show");
+  const W = window.innerWidth, H = window.innerHeight;
+  const pieces = Array.from({length: 140}, () => ({
+    x: Math.random()*W,
+    y: -20 - Math.random()*H*0.3,
+    r: 3 + Math.random()*5,
+    vx: -1.5 + Math.random()*3,
+    vy: 2 + Math.random()*4,
+    a: Math.random()*Math.PI*2,
+    va: -0.15 + Math.random()*0.3
+  }));
+  let t = 0;
+
+  function frame(){
+    ctxConf.clearRect(0,0,W,H);
+    for(const p of pieces){
+      p.x += p.vx;
+      p.y += p.vy;
+      p.a += p.va;
+      p.vy += 0.02;
+      ctxConf.save();
+      ctxConf.translate(p.x, p.y);
+      ctxConf.rotate(p.a);
+      ctxConf.globalAlpha = Math.max(0, 1 - t/160);
+      ctxConf.fillRect(-p.r, -p.r, p.r*2.4, p.r*1.2);
+      ctxConf.restore();
+    }
+    t++;
+    if(t < 160) confettiRAF = requestAnimationFrame(frame);
+    else{
+      confettiCanvas.classList.remove("show");
+      ctxConf.clearRect(0,0,W,H);
+      confettiRAF = null;
+    }
+  }
+  if(confettiRAF) cancelAnimationFrame(confettiRAF);
+  confettiRAF = requestAnimationFrame(frame);
+}
+
 function setDifficulty(){
   const v = $("difficulty")?.value || "normal";
   livesMax = (v === "easy") ? 8 : (v === "hard") ? 5 : 6;

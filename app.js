@@ -1,4 +1,6 @@
 
+let perfectWins = Number(localStorage.getItem("hm_perfect") || 0);
+
 let bestScore = Number(localStorage.getItem("hm_best_score") || 0);
 
 let bestTime = Number(localStorage.getItem("hm_best_time") || 0);
@@ -257,6 +259,12 @@ function handler(k, btn){
 
   if(isWin()){
     streak += 1;
+    if(wrong.size === 0){
+      perfectWins += 1;
+      localStorage.setItem("hm_perfect", String(perfectWins));
+      $("pillAch").textContent = `Ach: Perfect x${perfectWins}`;
+      showToast("Ach", "Perfect round!");
+    }
     gamesWon += 1;
     localStorage.setItem("hm_wins", gamesWon);
     score += 25;

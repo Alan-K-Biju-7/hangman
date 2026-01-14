@@ -466,6 +466,33 @@ $("btnExport").addEventListener("click", () => {
   URL.revokeObjectURL(a.href);
   showToast("Export", "Stats downloaded");
 });
+
+
+$("btnImport").addEventListener("click", () => $("importFile").click());
+
+$("importFile").addEventListener("change", async (e) => {
+  const f = e.target.files && e.target.files[0];
+  if(!f) return;
+  try{
+    const txt = await f.text();
+    const data = JSON.parse(txt);
+    const set = (k,v) => localStorage.setItem(k, String(v));
+    if("score" in data) set("hm_score", data.score);
+    if("streak" in data) set("hm_streak", data.streak);
+    if("games" in data) set("hm_games", data.games);
+    if("wins" in data) set("hm_wins", data.wins);
+    if("bestTime" in data) set("hm_best_time", data.bestTime);
+    if("bestScore" in data) set("hm_best_score", data.bestScore);
+    if("perfect" in data) set("hm_perfect", data.perfect);
+    if("theme" in data) set("hm_theme", data.theme);
+    if("sound" in data) set("hm_sound", data.sound);
+    showToast("Import", "Stats imported");
+    location.reload();
+  }catch{
+    showToast("Import", "Invalid JSON file");
+  }
+});
+
 $("btnResetStats").addEventListener("click", () => {
   score = 0;
   streak = 0;

@@ -545,6 +545,14 @@ function toggleTheme(){
 $("btnTheme").addEventListener("click", toggleTheme);
 
 $("btnShare").addEventListener("click", async () => {
+
+$("btnLearn").addEventListener("click", () => {
+  learningOn = !learningOn;
+  $("learnPanel").style.display = learningOn ? "block" : "none";
+  $("learnSteps").innerHTML = "";
+  showToast("Learn", learningOn ? "Learning mode ON" : "Learning mode OFF");
+});
+
   const url = location.href;
   try{
     await navigator.clipboard.writeText(url);

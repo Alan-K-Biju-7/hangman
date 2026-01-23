@@ -77,7 +77,15 @@
         <div class="keyboard" id="keyboard" role="group" aria-label="On screen keyboard"></div>
       </section>
 
-      <aside class="card">
+      
+      <aside class="card" id="learnPanel" style="display:none">
+        <h2>Learning Mode</h2>
+        <p class="muted">
+          Each step explains what the algorithm is doing.
+        </p>
+        <ul class="muted" id="learnSteps"></ul>
+      </aside>
+
         <h2>How it works</h2>
         <p class="muted">
           This simulator shows state changes: wrong guesses, lives, and discovered letters.

@@ -546,5 +546,9 @@ $("btnShare").addEventListener("click", async () => {
 });
 
 
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("./sw.js").catch(()=>{});
+}
+
 startTimer();
 startRound("Pick a letter.");

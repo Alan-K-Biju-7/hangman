@@ -250,3 +250,12 @@ body.light{
   transition:opacity .15s ease;
 }
 #confetti.show{opacity:1}
+
+.learnStep{
+  margin-bottom:8px;
+  padding:8px 10px;
+  border-left:3px solid rgba(124,92,255,.7);
+  background:rgba(124,92,255,.08);
+  border-radius:8px;
+  font-size:13px;
+}

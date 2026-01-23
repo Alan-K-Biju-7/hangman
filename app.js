@@ -1,4 +1,13 @@
 
+let learningOn = false;
+function addLearnStep(text){
+  if(!learningOn) return;
+  const li=document.createElement("li");
+  li.className="learnStep";
+  li.textContent=text;
+  $("learnSteps").appendChild(li);
+}
+
 let perfectWins = Number(localStorage.getItem("hm_perfect") || 0);
 
 let bestScore = Number(localStorage.getItem("hm_best_score") || 0);

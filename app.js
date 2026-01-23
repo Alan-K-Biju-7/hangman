@@ -247,6 +247,7 @@ function handler(k, btn){
 
   if(answer.includes(k)){
     revealed.add(k);
+    addLearnStep("Correct guess reveals all matching letters.");
     score += 10;
     $("status").textContent = `Correct: ${k}`;
     playSound(audioCorrect);

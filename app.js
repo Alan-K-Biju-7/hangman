@@ -255,6 +255,7 @@ function handler(k, btn){
   }else{
     wrong.add(k);
     lives -= 1;
+    addLearnStep("Wrong guess reduces lives and draws next hangman part.");
     score = Math.max(0, score - 2);
     $("status").textContent = `Wrong: ${k}`;
     playSound(audioWrong);

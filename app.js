@@ -250,11 +250,11 @@ function lockKeyboard(){
 }
 
 function updateHud(){
-  $("pillLives").textContent = `Lives: ${lives}`;
+  dom.pillLives.textContent = `Lives: ${lives}`;
   $("pillWrong").textContent = wrong.size ? `Wrong: ${[...wrong].join(", ")}` : "Wrong: —";
-  $("pillScore").textContent = `Score: ${score}`;
+  dom.pillScore.textContent = `Score: ${score}`;
   if(score > bestScore){ bestScore = score; localStorage.setItem("hm_best_score", String(bestScore)); }
-  $("pillStreak").textContent = `Streak: ${streak}`;
+  dom.pillStreak.textContent = `Streak: ${streak}`;
   drawHangman();
 }
 
@@ -530,8 +530,8 @@ $("btnResetStats").addEventListener("click", () => {
   streak = 0;
   localStorage.setItem("hm_score", "0");
   localStorage.setItem("hm_streak", "0");
-  $("pillScore").textContent = "Score: 0";
-  $("pillStreak").textContent = "Streak: 0";
+  dom.pillScore.textContent = "Score: 0";
+  dom.pillStreak.textContent = "Streak: 0";
   showToast("Reset", "Score & streak cleared");
 });
 

@@ -271,7 +271,7 @@ function handler(k, btn){
   }else{
     wrong.add(k);
     lives -= 1;
-    addLearnStep("Wrong guess reduces lives and draws next hangman part.");
+    addLearnStep("Wrong guess reduces lives, draws hangman, and triggers haptic feedback.");
     score = Math.max(0, score - 2);
     $("status").textContent = `Wrong: ${k}`;
     if(navigator.vibrate) navigator.vibrate(40);

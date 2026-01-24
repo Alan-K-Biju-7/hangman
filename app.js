@@ -132,7 +132,11 @@ function resizeConfetti(){
   confettiCanvas.height = Math.floor(window.innerHeight * devicePixelRatio);
   ctxConf.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
 }
-window.addEventListener("resize", resizeConfetti);
+let resizeTimeout=null;
+window.addEventListener("resize",()=>{
+ clearTimeout(resizeTimeout);
+ resizeTimeout=setTimeout(resizeConfetti,150);
+});
 
 function launchConfetti(){
   resizeConfetti();

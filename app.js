@@ -274,6 +274,7 @@ function handler(k, btn){
     addLearnStep("Wrong guess reduces lives and draws next hangman part.");
     score = Math.max(0, score - 2);
     $("status").textContent = `Wrong: ${k}`;
+    if(navigator.vibrate) navigator.vibrate(40);
     playSound(audioWrong);
     showToast("Wrong", `${k} is not in the word`);
   }

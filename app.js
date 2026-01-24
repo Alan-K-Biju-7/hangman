@@ -1,3 +1,9 @@
+let audioReady=false;
+function ensureAudio(){
+  if(audioReady) return;
+  [audioCorrect,audioWrong,audioWin].forEach(a=>a.load());
+  audioReady=true;
+}
 
 let learningOn = false;
 function addLearnStep(text){
@@ -23,7 +29,7 @@ const audioCorrect = new Audio("https://actions.google.com/sounds/v1/cartoon/woo
 const audioWrong = new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg");
 const audioWin = new Audio("https://actions.google.com/sounds/v1/cartoon/ta_da.ogg");
 
-function playSound(a){
+function playSound(a){ ensureAudio();
   if(soundOn) a.play().catch(()=>{});
 }
 

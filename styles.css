@@ -77,7 +77,7 @@ h1{margin:0;font-size:18px}
   padding:16px;
 }
 
-.hud{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;align-items:center}
+.hud{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;align-items:center}
 
 .pill{
   padding:8px 10px;border-radius:999px;

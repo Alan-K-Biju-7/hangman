@@ -298,6 +298,7 @@ function handler(k, btn){
   }
 
   if(lives <= 0){
+    addLearnStep("Lives reached zero. Game over.");
     parts.forEach(p => p.style.opacity = "1");
     streak = 0;
     localStorage.setItem("hm_score", String(score));

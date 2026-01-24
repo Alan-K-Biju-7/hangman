@@ -285,6 +285,7 @@ function handler(k, btn){
     localStorage.setItem("hm_streak", String(streak));
     $("status").textContent = `You Win 🎉 Answer: ${answer}`;
     playSound(audioWin);
+    $("srStatus").textContent="You win";
     showToast("Win", "Nice! +25 bonus");
     launchConfetti();
     stopTimer();
@@ -304,6 +305,7 @@ function handler(k, btn){
     localStorage.setItem("hm_score", String(score));
     localStorage.setItem("hm_streak", String(streak));
     $("status").textContent = `Game Over 💀 Answer: ${answer}`;
+    $("srStatus").textContent="Game over";
     showToast("Lose", "Streak reset");
     stopTimer();
     lockKeyboard();

@@ -1,3 +1,9 @@
+const dom={
+  status:$("status"),
+  pillLives:$("pillLives"),
+  pillScore:$("pillScore"),
+  pillStreak:$("pillStreak")
+};
 let audioReady=false;
 function ensureAudio(){
   if(audioReady) return;

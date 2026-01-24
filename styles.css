@@ -259,3 +259,8 @@ body.light{
   border-radius:8px;
   font-size:13px;
 }
+
+@media (max-width:480px){
+  .keyboard{gap:6px}
+  .key{padding:8px 0;font-size:13px}
+}

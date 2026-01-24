@@ -270,6 +270,7 @@ function handler(k, btn){
   updateHud();
 
   if(isWin()){
+    addLearnStep("All letters revealed. Win condition met.");
     streak += 1;
     if(wrong.size === 0){
       perfectWins += 1;

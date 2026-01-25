@@ -16,6 +16,15 @@ function ensureAudio(){
 
 let learningOn = false;
 
+
+function runDemo(){
+  if(!demoOn || demoQueue.length===0) return;
+  const k=demoQueue.shift();
+  const btn=[...kb.querySelectorAll("button")].find(b=>b.textContent===k);
+  if(btn && !btn.disabled) btn.click();
+  setTimeout(runDemo,700);
+}
+
 function buildDemo(){
   demoQueue=[];
   const uniq=[...new Set(answer.replace(/ /g,"").split(""))];

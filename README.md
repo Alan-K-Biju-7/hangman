@@ -30,3 +30,8 @@ Open `index.html` directly in browser, or use VS Code Live Server.
 
 ## Screenshots
 _Add screenshots here for GitHub preview._
+
+## Deploy (GitHub Pages)
+1. Repo → Settings → Pages
+2. Source: main / root
+3. Open the generated URL

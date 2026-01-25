@@ -15,6 +15,14 @@ function ensureAudio(){
 }
 
 let learningOn = false;
+
+function buildDemo(){
+  demoQueue=[];
+  const uniq=[...new Set(answer.replace(/ /g,"").split(""))];
+  uniq.slice(0,4).forEach(c=>demoQueue.push(c));
+  "ZXQ".split("").forEach(c=>demoQueue.push(c));
+}
+
 function addLearnStep(text){
   if(!learningOn) return;
   const li=document.createElement("li");

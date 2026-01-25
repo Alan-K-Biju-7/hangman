@@ -591,6 +591,16 @@ $("btnTheme").addEventListener("click", toggleTheme);
 $("btnShare").addEventListener("click", async () => {
 
 $("btnLearn").addEventListener("click", () => {
+
+$("btnDemo").addEventListener("click",()=>{
+  demoOn=true;
+  pickWord();
+  renderWord();
+  buildDemo();
+  showToast("Demo","Auto-playing example round");
+  setTimeout(runDemo,600);
+});
+
   learningOn = !learningOn;
   $("learnPanel").style.display = learningOn ? "block" : "none";
   $("learnSteps").innerHTML = "";

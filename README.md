@@ -22,3 +22,8 @@ Open `index.html` directly in browser, or use VS Code Live Server.
 - `index.html` UI
 - `styles.css` theme + layout
 - `app.js` game logic
+
+![HTML](https://img.shields.io/badge/HTML-5-orange)
+![CSS](https://img.shields.io/badge/CSS-3-blue)
+![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-yellow)
+![PWA](https://img.shields.io/badge/PWA-ready-purple)

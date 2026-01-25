@@ -1,3 +1,6 @@
+
+let demoOn=false;
+let demoQueue=[];
 const dom={
   status:$("status"),
   pillLives:$("pillLives"),

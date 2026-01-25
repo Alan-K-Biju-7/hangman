@@ -279,6 +279,7 @@ function updateHud(){
 }
 
 function handler(k, btn){
+  if(demoOn) demoOn=false;
   if(roundLocked) return;
 
   if(answer.includes(k)){

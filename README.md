@@ -27,3 +27,6 @@ Open `index.html` directly in browser, or use VS Code Live Server.
 ![CSS](https://img.shields.io/badge/CSS-3-blue)
 ![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-yellow)
 ![PWA](https://img.shields.io/badge/PWA-ready-purple)
+
+## Screenshots
+_Add screenshots here for GitHub preview._

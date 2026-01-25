@@ -1,4 +1,12 @@
 
+const onboardSeen=localStorage.getItem("hm_onboard");
+if(!onboardSeen){
+  setTimeout(()=>{
+    showToast("Tip","Try 🎬 Demo or 📘 Learn mode");
+    localStorage.setItem("hm_onboard","1");
+  },900);
+}
+
 let demoOn=false;
 let demoQueue=[];
 const dom={

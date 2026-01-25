@@ -631,5 +631,6 @@ if("serviceWorker" in navigator){
   navigator.serviceWorker.register("./sw.js").catch(()=>{});
 }
 
+console.info("Hangman",APP_VERSION);
 startTimer();
 startRound("Pick a letter.");

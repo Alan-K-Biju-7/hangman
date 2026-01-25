@@ -1,3 +1,4 @@
+const APP_VERSION="1.0.0";
 
 const onboardSeen=localStorage.getItem("hm_onboard");
 if(!onboardSeen){

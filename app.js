@@ -432,6 +432,8 @@ $("difficulty").addEventListener("change", () => {
 });
 
 window.addEventListener("keydown", (e) => {
+  if(e.key.toUpperCase()==="R" && lastAnswer){ $("btnReplay").click(); return; }
+
   const key = (e.key || "");
   if(key === "Enter"){ $("btnNew").click(); return; }
   if(key === "Backspace"){ $("btnReveal").click(); return; }

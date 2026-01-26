@@ -35,3 +35,10 @@ _Add screenshots here for GitHub preview._
 1. Repo → Settings → Pages
 2. Source: main / root
 3. Open the generated URL
+
+### Keyboard Shortcuts
+- A–Z: Guess
+- Enter: New game
+- H: Hint
+- R: Replay
+- D: Demo

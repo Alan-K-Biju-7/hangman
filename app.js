@@ -243,6 +243,7 @@ function pickWord(){
   const pool = getCategoryWords();
   const item = pool[Math.floor(Math.random()*pool.length)];
   answer = item.w;
+  $("pillCategory").textContent = `Category: ${item.c || "Custom"}`;
   lastAnswer = answer;
   addLearnStep("Selected a random word from the chosen category.");
   hint = item.h;

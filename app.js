@@ -227,6 +227,7 @@ function getCategoryWords(){
 }
 
 function pickWord(){
+  localStorage.setItem("hm_last_cat", category);
   setDifficulty();
   roundLocked = false;
   wrong = new Set();

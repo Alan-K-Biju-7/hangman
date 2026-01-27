@@ -432,6 +432,11 @@ $("difficulty").addEventListener("change", () => {
 });
 
 window.addEventListener("keydown", (e) => {
+  if(e.key==="Escape" && customModal.classList.contains("show")){
+    customModal.classList.remove("show");
+    return;
+  }
+
   if(e.key.toUpperCase()==="R" && lastAnswer){ $("btnReplay").click(); return; }
 
   const key = (e.key || "");

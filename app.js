@@ -237,6 +237,7 @@ function getCategoryWords(){
 
 function pickWord(){
   applyDifficulty();
+  addLearnStep(`Difficulty "${difficulty}" sets lives to ${livesMax}.`);
   localStorage.setItem("hm_last_cat", category);
   setDifficulty();
   roundLocked = false;

@@ -236,6 +236,7 @@ function getCategoryWords(){
 }
 
 function pickWord(){
+  hintUsed = false;
   applyDifficulty();
   addLearnStep(`Difficulty "${difficulty}" sets lives to ${livesMax}.`);
   localStorage.setItem("hm_last_cat", category);

@@ -2,6 +2,8 @@ let hintUsed = false;let difficulty = localStorage.getItem("hm_diff") || "medium
 $("difficulty").value = difficulty;
 $("difficulty").onchange = e=>{
   difficulty = e.target.value;
+  $("pillDifficulty").textContent = `Difficulty: ${difficulty[0].toUpperCase()+difficulty.slice(1)}`;
+  difficulty = e.target.value;
   localStorage.setItem("hm_diff", difficulty);
 };
 let lastAnswer="";

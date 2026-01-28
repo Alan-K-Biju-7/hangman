@@ -1,3 +1,9 @@
+let difficulty = localStorage.getItem("hm_diff") || "medium";
+$("difficulty").value = difficulty;
+$("difficulty").onchange = e=>{
+  difficulty = e.target.value;
+  localStorage.setItem("hm_diff", difficulty);
+};
 let lastAnswer="";
 const APP_VERSION="1.0.0";
 

@@ -1,4 +1,4 @@
-let difficulty = localStorage.getItem("hm_diff") || "medium";
+let hintUsed = false;let difficulty = localStorage.getItem("hm_diff") || "medium";
 $("difficulty").value = difficulty;
 $("difficulty").onchange = e=>{
   difficulty = e.target.value;
@@ -407,6 +407,11 @@ $("btnNew").addEventListener("click", () => {
 });
 
 $("btnHint").addEventListener("click", () => {
+  if(difficulty==="hard" && hintUsed){
+    showToast("Hint","No more hints in Hard mode");
+    return;
+  }
+  hintUsed = true;
   if(roundLocked) return;
   if(lives <= 1){ showToast("Hint", "Need at least 2 lives"); return; }
   lives -= 1;

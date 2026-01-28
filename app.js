@@ -136,6 +136,9 @@ let revealed = new Set();
 let wrong = new Set();
 
 let livesMax = 6;
+function applyDifficulty(){
+  livesMax = difficulty==="easy" ? 8 : difficulty==="hard" ? 5 : 6;
+}
 let lives = 6;
 
 let roundLocked = false;
@@ -233,6 +236,7 @@ function getCategoryWords(){
 }
 
 function pickWord(){
+  applyDifficulty();
   localStorage.setItem("hm_last_cat", category);
   setDifficulty();
   roundLocked = false;

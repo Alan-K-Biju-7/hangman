@@ -42,3 +42,8 @@ _Add screenshots here for GitHub preview._
 - H: Hint
 - R: Replay
 - D: Demo
+
+### Difficulty Rules
+- Easy: 8 lives
+- Medium: 6 lives
+- Hard: 5 lives, limited hints

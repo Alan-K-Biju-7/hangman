@@ -662,5 +662,6 @@ if("serviceWorker" in navigator){
 }
 
 console.info("Hangman",APP_VERSION);
+$("pillDifficulty").textContent = `Difficulty: ${difficulty[0].toUpperCase()+difficulty.slice(1)}`;
 startTimer();
 startRound("Pick a letter.");

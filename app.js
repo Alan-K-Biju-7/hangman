@@ -1,4 +1,5 @@
-let hintUsed = false;let difficulty = localStorage.getItem("hm_diff") || "medium";
+let hintUsed = false;
+  $("btnHint").disabled = false;let difficulty = localStorage.getItem("hm_diff") || "medium";
 $("difficulty").value = difficulty;
 $("difficulty").onchange = e=>{
   difficulty = e.target.value;
@@ -239,6 +240,7 @@ function getCategoryWords(){
 
 function pickWord(){
   hintUsed = false;
+  $("btnHint").disabled = false;
   applyDifficulty();
   addLearnStep(`Difficulty "${difficulty}" sets lives to ${livesMax}.`);
   localStorage.setItem("hm_last_cat", category);

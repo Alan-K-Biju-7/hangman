@@ -290,3 +290,5 @@ body.light{
   opacity:.5;
   cursor:not-allowed;
 }
+
+.pop{animation:popIn .12s ease}

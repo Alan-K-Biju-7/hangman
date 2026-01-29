@@ -137,6 +137,7 @@ let answer = "";
 let hint = "";
 let revealed = new Set();
 let wrong = new Set();
+  $("pillWrong").textContent = "Wrong: —";
 
 let livesMax = 6;
 function applyDifficulty(){
@@ -248,6 +249,7 @@ function pickWord(){
   setDifficulty();
   roundLocked = false;
   wrong = new Set();
+  $("pillWrong").textContent = "Wrong: —";
   lives = livesMax;
   parts.forEach(p => p.style.opacity = "0");
 

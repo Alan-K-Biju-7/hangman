@@ -311,6 +311,7 @@ function updateHud(){
 }
 
 function handler(k, btn){
+  if(roundLocked) return;
   if(demoOn) demoOn=false;
   if(roundLocked) return;
 

@@ -403,6 +403,7 @@ function startRound(message){
 }
 
 $("btnNew").addEventListener("click", () => {
+  $("pillDifficulty").textContent = `Difficulty: ${difficulty[0].toUpperCase()+difficulty.slice(1)}`;
   localStorage.setItem("hm_score", String(score));
   localStorage.setItem("hm_streak", String(streak));
   startRound("New game started.");

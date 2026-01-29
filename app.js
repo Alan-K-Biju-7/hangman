@@ -239,6 +239,7 @@ function getCategoryWords(){
 }
 
 function pickWord(){
+  $("difficulty").disabled = true;
   hintUsed = false;
   $("btnHint").disabled = false;
   applyDifficulty();

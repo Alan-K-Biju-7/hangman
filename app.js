@@ -320,6 +320,8 @@ function handler(k, btn){
     showToast("Correct", `${k} is in the word`);
   }else{
     wrong.add(k);
+  $("game").classList.add("shake");
+  setTimeout(()=>$("game").classList.remove("shake"),150);
     lives -= 1;
     addLearnStep("Wrong guess reduces lives, draws hangman, and triggers haptic feedback.");
     score = Math.max(0, score - 2);

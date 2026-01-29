@@ -416,6 +416,7 @@ $("btnHint").addEventListener("click", () => {
     return;
   }
   hintUsed = true;
+  if(difficulty==="hard") $("btnHint").disabled = true;
   if(roundLocked) return;
   if(lives <= 1){ showToast("Hint", "Need at least 2 lives"); return; }
   lives -= 1;

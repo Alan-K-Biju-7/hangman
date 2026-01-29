@@ -366,6 +366,7 @@ function handler(k, btn){
       showToast("Record", `Best time: ${bestTime}s`);
     }
     lockKeyboard();
+  $("difficulty").disabled = false;
   }
 
   if(lives <= 0){
@@ -379,6 +380,7 @@ function handler(k, btn){
     showToast("Lose", "Streak reset");
     stopTimer();
     lockKeyboard();
+  $("difficulty").disabled = false;
   }
 }
 
@@ -435,6 +437,7 @@ $("btnHint").addEventListener("click", () => {
     localStorage.setItem("hm_streak", String(streak));
     $("status").textContent = `Game Over 💀 Answer: ${answer}`;
     lockKeyboard();
+  $("difficulty").disabled = false;
   }
 });
 
@@ -445,6 +448,7 @@ $("btnReveal").addEventListener("click", () => {
   showToast("Reveal", "Answer revealed");
   stopTimer();
   lockKeyboard();
+  $("difficulty").disabled = false;
 });
 
 $("category").addEventListener("change", () => {

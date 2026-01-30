@@ -370,7 +370,7 @@ function handler(k, btn){
   if(isWin()){
     addLearnStep("All letters revealed. Win condition met.");
     streak += 1;
-    if(streak === 5 && difficulty === "easy"){
+    if(!demoOn && streak === 5 && difficulty === "easy"){
       difficulty = "medium";
       $("difficulty").value = "medium";
       showToast("Level up","Difficulty increased to Medium");

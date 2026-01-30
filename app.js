@@ -356,6 +356,7 @@ function handler(k, btn){
   else btn.classList.add("bad");
 
   renderWord();
+  score = Math.max(0, score);
   updateHud();
 
   if(isWin()){
@@ -426,6 +427,7 @@ function startRound(message){
   $("hangmanSvg").classList.remove("shake");
   $("status").textContent = message || "Pick a letter.";
   $("hintLine").textContent = "";
+  score = Math.max(0, score);
   updateHud();
 }
 
@@ -448,6 +450,7 @@ $("btnHint").addEventListener("click", () => {
   if(lives <= 1){ showToast("Hint", "Need at least 2 lives"); return; }
   lives -= 1;
   $("hintLine").textContent = `Hint: ${hint}`;
+  score = Math.max(0, score);
   updateHud();
   showToast("Hint", "Hint shown (-1 life)");
   if(lives <= 0){

@@ -390,7 +390,8 @@ function handler(k, btn){
   $("difficulty").disabled = false;
   }
 
-  if(lives <= 0){
+  if(lives === 1){ showToast("Warning","Last chance!"); }
+if(lives <= 0){
     addLearnStep("Lives reached zero. Game over.");
     parts.forEach(p => p.style.opacity = "1");
     streak = 0;
@@ -453,7 +454,8 @@ $("btnHint").addEventListener("click", () => {
   score = Math.max(0, score);
   updateHud();
   showToast("Hint", "Hint shown (-1 life)");
-  if(lives <= 0){
+  if(lives === 1){ showToast("Warning","Last chance!"); }
+if(lives <= 0){
     parts.forEach(p => p.style.opacity = "1");
     streak = 0;
     localStorage.setItem("hm_score", String(score));

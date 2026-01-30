@@ -389,6 +389,7 @@ function handler(k, btn){
     showToast("Efficiency", `Efficiency: ${calcEfficiency()}%`);
     stopTimer();
     const winSec = Math.floor((Date.now() - t0) / 1000);
+    saveBestTimeByDifficulty(winSec);
     if(bestTime === 0 || winSec < bestTime){
       bestTime = winSec;
       localStorage.setItem("hm_best_time", String(bestTime));

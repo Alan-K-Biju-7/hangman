@@ -1,3 +1,10 @@
+
+function resetRound(){
+  revealed = new Set();
+  wrong = new Set();
+  lives = livesMax;
+  roundLocked = false;
+}
 let hintUsed = false;
   $("btnHint").disabled = false;let difficulty = localStorage.getItem("hm_diff") || "medium";
 $("difficulty").value = difficulty;

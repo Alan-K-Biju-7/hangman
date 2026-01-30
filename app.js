@@ -1,3 +1,4 @@
+let guessCount = 0;
 
 function resetRound(){
   revealed = new Set();

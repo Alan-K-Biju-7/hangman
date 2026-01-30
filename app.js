@@ -1,3 +1,8 @@
+
+function calcEfficiency(){
+  const uniqueLetters = new Set(answer.replace(/ /g,"")).size;
+  return uniqueLetters ? Math.round((uniqueLetters / guessCount) * 100) : 0;
+}
 let guessCount = 0;
 
 function resetRound(){

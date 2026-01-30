@@ -370,6 +370,11 @@ function handler(k, btn){
   if(isWin()){
     addLearnStep("All letters revealed. Win condition met.");
     streak += 1;
+    if(streak === 5 && difficulty === "easy"){
+      difficulty = "medium";
+      $("difficulty").value = "medium";
+      showToast("Level up","Difficulty increased to Medium");
+    }
     if(wrong.size === 0){
       perfectWins += 1;
       localStorage.setItem("hm_perfect", String(perfectWins));

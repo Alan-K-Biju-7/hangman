@@ -319,6 +319,7 @@ function updateHud(){
 }
 
 function handler(k, btn){
+  guessCount += 1;
   if(revealed.has(k) || wrong.has(k)) return;
   if(roundLocked) return;
   if(demoOn) demoOn=false;

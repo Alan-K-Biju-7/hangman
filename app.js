@@ -1,4 +1,12 @@
 
+function saveBestTimeByDifficulty(sec){
+  const key = `hm_best_time_${difficulty}`;
+  const prev = Number(localStorage.getItem(key) || 0);
+  if(!prev || sec < prev){
+    localStorage.setItem(key, sec);
+  }
+}
+
 function calcEfficiency(){
   const uniqueLetters = new Set(answer.replace(/ /g,"")).size;
   return uniqueLetters ? Math.round((uniqueLetters / guessCount) * 100) : 0;

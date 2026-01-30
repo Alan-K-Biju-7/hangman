@@ -339,6 +339,7 @@ function handler(k, btn){
     showToast("Correct", `${k} is in the word`);
   }else{
     wrong.add(k);
+  if(guessCount > answer.length * 2) score -= 1;
   $("game").classList.add("shake");
   setTimeout(()=>$("game").classList.remove("shake"),150);
     lives -= 1;

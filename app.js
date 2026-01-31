@@ -400,7 +400,7 @@ function handler(k, btn){
     totalGuesses += guessCount;
     localStorage.setItem("hm_total_guesses", totalGuesses);
     if(!demoOn){ wins += 1; }
-    localStorage.setItem("hm_wins", wins);
+    localStorage.setItem("hm_wins", Math.min(9999, wins));
     addLearnStep("All letters revealed. Win condition met.");
     streak += 1;
     bestStreak = Math.max(bestStreak, streak);

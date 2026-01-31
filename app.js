@@ -409,7 +409,7 @@ function handler(k, btn){
     $("srStatus").textContent="You win";
     showToast("Win", "Nice! +25 bonus");
     launchConfetti();
-    showToast("Efficiency", `Efficiency: ${calcEfficiency()}%`);
+    showToast("Stats", `Win rate: ${winRate()}% | Efficiency: ${calcEfficiency()}%`);
     stopTimer();
     const winSec = Math.floor((Date.now() - t0) / 1000);
     saveBestTimeByDifficulty(winSec);

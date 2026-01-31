@@ -389,6 +389,8 @@ function handler(k, btn){
     localStorage.setItem("hm_wins", wins);
     addLearnStep("All letters revealed. Win condition met.");
     streak += 1;
+    bestStreak = Math.max(bestStreak, streak);
+    localStorage.setItem("hm_best_streak", bestStreak);
     if(!demoOn && streak === 5 && difficulty === "easy"){
       difficulty = "medium";
       $("difficulty").value = "medium";

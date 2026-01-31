@@ -386,6 +386,8 @@ function handler(k, btn){
   updateHud();
 
   if(isWin()){
+    totalGuesses += guessCount;
+    localStorage.setItem("hm_total_guesses", totalGuesses);
     if(!demoOn){ wins += 1; }
     localStorage.setItem("hm_wins", wins);
     addLearnStep("All letters revealed. Win condition met.");

@@ -1,3 +1,4 @@
+let bestStreak = Number(localStorage.getItem("hm_best_streak")||0);
 
 function winRate(){
   return roundsPlayed ? Math.round((wins / roundsPlayed) * 100) : 0;

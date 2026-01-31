@@ -1,3 +1,4 @@
+let wins = Number(localStorage.getItem("hm_wins")||0);
 let roundsPlayed = Number(localStorage.getItem("hm_rounds")||0);
 let wrongStreak = 0;
 let correctCount = 0;

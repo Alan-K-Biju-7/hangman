@@ -420,6 +420,8 @@ function handler(k, btn){
 
   if(lives === 1){ showToast("Warning","Last chance!"); }
 if(lives <= 0){
+    losses += 1;
+    localStorage.setItem("hm_losses", losses);
     addLearnStep("Lives reached zero. Game over.");
     parts.forEach(p => p.style.opacity = "1");
     streak = 0;
@@ -484,6 +486,8 @@ $("btnHint").addEventListener("click", () => {
   showToast("Hint", "Hint shown (-1 life)");
   if(lives === 1){ showToast("Warning","Last chance!"); }
 if(lives <= 0){
+    losses += 1;
+    localStorage.setItem("hm_losses", losses);
     parts.forEach(p => p.style.opacity = "1");
     streak = 0;
     localStorage.setItem("hm_score", String(score));

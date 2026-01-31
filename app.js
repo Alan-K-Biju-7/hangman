@@ -1,3 +1,7 @@
+
+function winRate(){
+  return roundsPlayed ? Math.round((wins / roundsPlayed) * 100) : 0;
+}
 let losses = Number(localStorage.getItem("hm_losses")||0);
 let wins = Number(localStorage.getItem("hm_wins")||0);
 let roundsPlayed = Number(localStorage.getItem("hm_rounds")||0);

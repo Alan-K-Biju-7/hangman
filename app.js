@@ -13,6 +13,7 @@ function calcEfficiency(){
   return uniqueLetters ? Math.round((uniqueLetters / guessCount) * 100) : 0;
 }
 let guessCount = 0;
+  correctCount = 0;
 
 function resetRound(){
   revealed = new Set();

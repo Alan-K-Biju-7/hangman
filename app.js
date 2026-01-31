@@ -1,4 +1,11 @@
 
+function sanitizeStats(){
+  wins = Math.max(0, wins);
+  losses = Math.max(0, losses);
+  roundsPlayed = Math.max(wins + losses, roundsPlayed);
+}
+sanitizeStats();
+
 function avgGuesses(){
   return wins ? Math.round(totalGuesses / wins) : 0;
 }

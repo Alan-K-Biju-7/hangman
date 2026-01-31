@@ -1,3 +1,4 @@
+let totalGuesses = Number(localStorage.getItem("hm_total_guesses")||0);
 let bestStreak = Number(localStorage.getItem("hm_best_streak")||0);
 
 function winRate(){

@@ -265,6 +265,8 @@ function getCategoryWords(){
 }
 
 function pickWord(){
+  roundsPlayed += 1;
+  localStorage.setItem("hm_rounds", roundsPlayed);
   $("difficulty").disabled = true;
   hintUsed = false;
   $("btnHint").disabled = false;

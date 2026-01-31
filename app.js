@@ -353,6 +353,7 @@ function handler(k, btn){
   }else{
     wrong.add(k);
   wrongStreak += 1;
+  if(wrongStreak >= 3) lives -= 1;
   if(guessCount > answer.length * 2) score -= 1;
   $("game").classList.add("shake");
   setTimeout(()=>$("game").classList.remove("shake"),150);

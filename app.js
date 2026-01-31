@@ -1,3 +1,4 @@
+let correctCount = 0;
 
 function saveBestTimeByDifficulty(sec){
   const key = `hm_best_time_${difficulty}`;

@@ -1,3 +1,4 @@
+let wrongStreak = 0;
 let correctCount = 0;
 
 function saveBestTimeByDifficulty(sec){

@@ -385,7 +385,7 @@ function handler(k, btn){
   updateHud();
 
   if(isWin()){
-    wins += 1;
+    if(!demoOn){ wins += 1; }
     localStorage.setItem("hm_wins", wins);
     addLearnStep("All letters revealed. Win condition met.");
     streak += 1;
@@ -427,7 +427,7 @@ function handler(k, btn){
 
   if(lives === 1){ showToast("Warning","Last chance!"); }
 if(lives <= 0){
-    losses += 1;
+    if(!demoOn){ losses += 1; }
     streak = 0;
     localStorage.setItem("hm_losses", losses);
     addLearnStep("Lives reached zero. Game over.");
@@ -494,7 +494,7 @@ $("btnHint").addEventListener("click", () => {
   showToast("Hint", "Hint shown (-1 life)");
   if(lives === 1){ showToast("Warning","Last chance!"); }
 if(lives <= 0){
-    losses += 1;
+    if(!demoOn){ losses += 1; }
     streak = 0;
     localStorage.setItem("hm_losses", losses);
     parts.forEach(p => p.style.opacity = "1");

@@ -379,6 +379,8 @@ function handler(k, btn){
   updateHud();
 
   if(isWin()){
+    wins += 1;
+    localStorage.setItem("hm_wins", wins);
     addLearnStep("All letters revealed. Win condition met.");
     streak += 1;
     if(!demoOn && streak === 5 && difficulty === "easy"){

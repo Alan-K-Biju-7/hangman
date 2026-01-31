@@ -343,6 +343,7 @@ function handler(k, btn){
 
   if(answer.includes(k)){
     revealed.add(k);
+    wrongStreak = 0;
     correctCount += 1;
     addLearnStep("Correct guess reveals all matching letters.");
     score += 10;
@@ -351,6 +352,7 @@ function handler(k, btn){
     showToast("Correct", `${k} is in the word`);
   }else{
     wrong.add(k);
+  wrongStreak += 1;
   if(guessCount > answer.length * 2) score -= 1;
   $("game").classList.add("shake");
   setTimeout(()=>$("game").classList.remove("shake"),150);

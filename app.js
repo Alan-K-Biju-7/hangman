@@ -1,3 +1,7 @@
+
+function avgGuesses(){
+  return wins ? Math.round(totalGuesses / wins) : 0;
+}
 let totalGuesses = Number(localStorage.getItem("hm_total_guesses")||0);
 let bestStreak = Number(localStorage.getItem("hm_best_streak")||0);
 

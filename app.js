@@ -353,11 +353,11 @@ function handler(k, btn){
   }else{
     wrong.add(k);
   wrongStreak += 1;
-  if(wrongStreak >= 3) lives -= 1;
+  if(wrongStreak >= 3) lives = Math.max(0, lives - 1);
   if(guessCount > answer.length * 2) score -= 1;
   $("game").classList.add("shake");
   setTimeout(()=>$("game").classList.remove("shake"),150);
-    lives -= 1;
+    lives = Math.max(0, lives - 1);
     addLearnStep("Wrong guess reduces lives, draws hangman, and triggers haptic feedback.");
     score = Math.max(0, score - 2);
     $("status").textContent = `Wrong: ${k}`;
@@ -470,7 +470,7 @@ $("btnHint").addEventListener("click", () => {
   if(difficulty==="hard") $("btnHint").disabled = true;
   if(roundLocked) return;
   if(lives <= 1){ showToast("Hint", "Need at least 2 lives"); return; }
-  lives -= 1;
+  lives = Math.max(0, lives - 1);
   $("hintLine").textContent = `Hint: ${hint}`;
   score = Math.max(0, score);
   updateHud();

@@ -1,3 +1,7 @@
+
+function isPerfectRound(){
+  return wrong.size === 0;
+}
 let longestWordSolved = localStorage.getItem("hm_longest_word") || "";
 
 function sanitizeStats(){

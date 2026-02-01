@@ -435,6 +435,10 @@ function handler(k, btn){
     $("srStatus").textContent="You win";
     showToast("Win", "Nice! +25 bonus");
     launchConfetti();
+    if(isPerfectRound()){
+      score += 5;
+      showToast("Perfect!", "Bonus awarded for mistake-free round");
+    }
     showToast("Stats", `Avg guesses: ${avgGuesses()} | Win rate: ${winRate()}% | Efficiency: ${calcEfficiency()}%`);
     stopTimer();
     const winSec = Math.floor((Date.now() - t0) / 1000);

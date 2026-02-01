@@ -1,4 +1,6 @@
 
+let perfectRounds = Number(localStorage.getItem("hm_perfect_rounds") || 0);
+
 function isPerfectRound(){
   return wrong.size === 0;
 }
@@ -436,6 +438,8 @@ function handler(k, btn){
     showToast("Win", "Nice! +25 bonus");
     launchConfetti();
     if(isPerfectRound()){
+      perfectRounds += 1;
+      localStorage.setItem("hm_perfect_rounds", perfectRounds);
       score += 5;
       showToast("Perfect!", "Bonus awarded for mistake-free round");
     }

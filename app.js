@@ -1,3 +1,4 @@
+let longestWordSolved = localStorage.getItem("hm_longest_word") || "";
 
 function sanitizeStats(){
   wins = Math.max(0, wins);

@@ -398,6 +398,10 @@ function handler(k, btn){
   updateHud();
 
   if(isWin()){
+    if(answer.replace(/ /g,"").length > longestWordSolved.length){
+      longestWordSolved = answer;
+      localStorage.setItem("hm_longest_word", longestWordSolved);
+    }
     totalGuesses += guessCount;
     localStorage.setItem("hm_total_guesses", totalGuesses);
     if(!demoOn){ wins += 1; }

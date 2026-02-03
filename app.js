@@ -470,6 +470,7 @@ function handler(k, btn){
       score += 5;
       showToast("Perfect!", "Bonus awarded for mistake-free round");
     }
+    showToast("Round Summary", roundSummary());
     showToast("Stats", `Avg guesses: ${avgGuesses()} | Win rate: ${winRate()}% | Efficiency: ${calcEfficiency()}%`);
     stopTimer();
     const winSec = Math.floor((Date.now() - t0) / 1000);

@@ -460,6 +460,8 @@ function handler(k, btn){
     launchConfetti();
     if(isPerfectRound()){
       perfectRounds += 1;
+      showToast("Achievement","Perfect round!");
+
       localStorage.setItem("hm_perfect_rounds", perfectRounds);
       score += 5;
       showToast("Perfect!", "Bonus awarded for mistake-free round");

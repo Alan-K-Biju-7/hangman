@@ -1,4 +1,8 @@
 
+function roundSummary(){
+  return `Guesses: ${guessCount} | Wrong: ${wrong.size} | Time: ${Math.floor((Date.now()-t0)/1000)}s`;
+}
+
 let firstWinUnlocked = localStorage.getItem("hm_first_win") === "1";
 
 const GAME_STATE = {

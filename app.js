@@ -373,6 +373,7 @@ function updateHud(){
 }
 
 function handler(k, btn){
+  if(gameState !== GAME_STATE.PLAYING) return;
   guessCount += 1;
   if(revealed.has(k) || wrong.has(k)) return;
   if(roundLocked) return;

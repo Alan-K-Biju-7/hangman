@@ -413,6 +413,7 @@ function handler(k, btn){
   updateHud();
 
   if(isWin()){
+    gameState = GAME_STATE.WON;
     if(answer.replace(/ /g,"").length > longestWordSolved.length){
       longestWordSolved = answer;
       localStorage.setItem("hm_longest_word", longestWordSolved);

@@ -468,6 +468,7 @@ function handler(k, btn){
 
   if(lives === 1){ showToast("Warning","Last chance!"); }
 if(lives <= 0){
+    gameState = GAME_STATE.LOST;
     if(!demoOn){ losses += 1; }
     streak = 0;
     localStorage.setItem("hm_losses", losses);
@@ -535,6 +536,7 @@ $("btnHint").addEventListener("click", () => {
   showToast("Hint", "Hint shown (-1 life)");
   if(lives === 1){ showToast("Warning","Last chance!"); }
 if(lives <= 0){
+    gameState = GAME_STATE.LOST;
     if(!demoOn){ losses += 1; }
     streak = 0;
     localStorage.setItem("hm_losses", losses);

@@ -1,4 +1,12 @@
 
+const GAME_STATE = {
+  IDLE: "idle",
+  PLAYING: "playing",
+  WON: "won",
+  LOST: "lost"
+};
+let gameState = GAME_STATE.IDLE;
+
 let perfectRounds = Number(localStorage.getItem("hm_perfect_rounds") || 0);
 
 function isPerfectRound(){

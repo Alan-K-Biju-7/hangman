@@ -420,6 +420,9 @@ function handler(k, btn){
     if(answer.replace(/ /g,"").length > longestWordSolved.length){
       longestWordSolved = answer;
       localStorage.setItem("hm_longest_word", longestWordSolved);
+      if(longestWordSolved.replace(/ /g,"").length >= 10){
+        showToast("Achievement","Solved a long word!");
+      }
     }
     totalGuesses += guessCount;
     localStorage.setItem("hm_total_guesses", totalGuesses);

@@ -299,6 +299,7 @@ function getCategoryWords(){
 }
 
 function pickWord(){
+  gameState = GAME_STATE.PLAYING;
   roundsPlayed += 1;
   localStorage.setItem("hm_rounds", roundsPlayed);
   $("difficulty").disabled = true;

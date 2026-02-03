@@ -1,4 +1,6 @@
 
+let firstWinUnlocked = localStorage.getItem("hm_first_win") === "1";
+
 const GAME_STATE = {
   IDLE: "idle",
   PLAYING: "playing",
@@ -421,7 +423,12 @@ function handler(k, btn){
     }
     totalGuesses += guessCount;
     localStorage.setItem("hm_total_guesses", totalGuesses);
-    if(!demoOn){ wins += 1; }
+    if(!demoOn){ wins += 1;
+    if(!firstWinUnlocked){
+      firstWinUnlocked = true;
+      localStorage.setItem("hm_first_win","1");
+      showToast("Achievement","First win unlocked!");
+    } }
     localStorage.setItem("hm_wins", Math.min(9999, wins));
     addLearnStep("All letters revealed. Win condition met.");
     streak += 1;

@@ -1,162 +1,128 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Hangman simulator for learning: visual drawing, lives, hints, score, streak, categories." />
-  <meta name="theme-color" content="#0b1020" />
-  <title>Hangman Simulator • v1.0.0</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#061016">
+  <title>Nightfall — A Cinematic Word Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="enhancements.css">
 </head>
 <body>
-  <div class="wrap">
-    <header class="top">
-      <div class="brand">
-        <div class="logo">🪢</div>
-        <div>
-          <h1>Hangman Simulator</h1>
-          <p class="sub">Guess letters. Learn visually.</p>
-        </div>
-      </div>
+  <canvas id="weather" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
 
-      <div class="actions">
-        <select class="select" id="difficulty" aria-label="Difficulty">
-        <select class="select" id="category" aria-label="Category">
-          <option value="mixed" selected>Mixed</option>
-          <option value="cs">CS</option>
-          <option value="movies">Movies</option>
-        </select>
+  <header class="topbar">
+    <button class="brand" id="homeBtn" aria-label="Nightfall home">
+      <span class="brand-mark">N</span><span>NIGHTFALL</span><small>WORD PROTOCOL</small>
+    </button>
+    <div class="status"><i></i><span>ROOFTOP 07</span><b>•</b><span id="clock">00:00:00</span></div>
+    <div class="header-actions">
+      <button class="icon-btn" id="soundBtn" aria-label="Toggle sound" title="Toggle sound">◖))</button>
+      <button class="icon-btn" id="statsBtn" aria-label="View case file" title="Case file">▤</button>
+    </div>
+  </header>
 
-          <option value="easy">Easy (8 lives)</option>
-          <option value="normal" selected>Normal (6 lives)</option>
-          <option value="hard">Hard (5 lives)</option>
-        </select>
-
-        <button class="btn" id="btnNew" aria-label="Start new game">New</button>
-        <button class="btn" id="btnHint" aria-label="Show hint">Hint</button>
-        <button class="btn" id="btnCustom">Custom</button>
-        <button class="btn danger" id="btnReveal" aria-label="Reveal answer">Reveal</button>
-        <button class="btn" id="btnHelp">Help</button>
-        <button class="btn" id="btnSound">🔊 Sound</button>
-        <button class="btn" id="btnTheme">🌙 Theme</button>
-        <button class="btn" id="btnShare">🔗 Share</button>
-        <button class="btn" id="btnLearn">📘 Learn</button>
-        <button class="btn" id="btnDemo">🎬 Demo</button>
-      </div>
-    </header>
-
-    <main class="grid">
-      <section class="card">
-        <svg id="hangmanSvg" width="260" height="220" viewBox="0 0 260 220" aria-label="Hangman drawing">
-          <path d="M20 200 L160 200" stroke="rgba(255,255,255,.4)" stroke-width="6"/>
-          <path d="M60 200 L60 30" stroke="rgba(255,255,255,.4)" stroke-width="6"/>
-          <path d="M60 30 L140 30" stroke="rgba(255,255,255,.4)" stroke-width="6"/>
-          <path d="M140 30 L140 55" stroke="rgba(255,255,255,.4)" stroke-width="6"/>
-
-          <circle id="h-head" cx="140" cy="75" r="18" stroke="#fff" stroke-width="4" fill="none" opacity="0"/>
-          <path id="h-body" d="M140 93 L140 135" stroke="#fff" stroke-width="4" opacity="0"/>
-          <path id="h-larm" d="M140 105 L120 120" stroke="#fff" stroke-width="4" opacity="0"/>
-          <path id="h-rarm" d="M140 105 L160 120" stroke="#fff" stroke-width="4" opacity="0"/>
-          <path id="h-lleg" d="M140 135 L125 165" stroke="#fff" stroke-width="4" opacity="0"/>
-          <path id="h-rleg" d="M140 135 L155 165" stroke="#fff" stroke-width="4" opacity="0"/>
+  <main class="game-shell">
+    <section class="scene" aria-label="Execution progress">
+      <div class="scene-caption"><span>SUBJECT STATUS</span><strong id="subjectStatus">AWAITING PROTOCOL</strong></div>
+      <div class="figure-wrap" id="figureWrap">
+        <svg class="subject-svg" viewBox="0 0 240 430" role="img" aria-label="Shadowed suspended figure">
+          <defs>
+            <linearGradient id="bodyShade" x1="0" x2="1"><stop stop-color="#050a0c"/><stop offset=".68" stop-color="#111a1c"/><stop offset="1" stop-color="#385156"/></linearGradient>
+            <filter id="rimGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+          <g class="sil-rope"><path d="M120-10v96c0 15 7 21 15 27"/><path class="knot" d="M120 76c-14 7-16 29 0 38 16-9 14-31 0-38Z"/></g>
+          <g class="sil-head">
+            <path d="M91 102c1-27 16-45 31-45 20 0 35 22 32 48l-6 37c-3 17-15 29-28 29-14 0-26-13-29-31Z"/>
+            <path class="face-shadow" d="M100 99c18-15 34-12 47 2l-4 38c-10 7-34 6-44-2Z"/>
+            <path class="head-detail" d="M104 92c8-9 27-12 39 2M108 144c9 5 18 5 27 0"/>
+          </g>
+          <g class="sil-torso">
+            <path d="M105 163h31l7 21 35 19-20 122c-23 14-53 14-77 0L64 204l36-20Z"/>
+            <path class="collar" d="M101 169l19 24 18-24 17 25-35 17-37-17Z"/>
+            <path class="fold" d="M104 180l-13 139m44-139 13 139M82 217c25 11 49 11 77 0m-75 55c25 8 51 8 78 0"/>
+            <path class="zip" d="M120 194v126"/>
+          </g>
+          <g class="sil-arms">
+            <path d="M70 201c-13 6-18 18-16 35l12 86 18-3 1-83 13-44Z"/>
+            <path d="M171 201c13 6 18 18 16 35l-9 88-18-2-4-86-13-44Z"/>
+            <path class="hands" d="M65 314c-5 14-3 31 6 38 8-5 14-18 11-35Zm95 4c-3 15 3 28 11 34 9-8 10-24 5-37Z"/>
+          </g>
+          <g class="sil-legs">
+            <path d="M82 316c-2 42 5 73 14 105h25l4-104Z"/><path d="M119 317l7 104h25c8-34 14-66 7-105Z"/>
+            <path class="boots" d="M96 408c-7 9-13 16-17 25h43l-2-25Zm31 0-1 25h43c-4-9-11-17-19-25Z"/>
+          </g>
         </svg>
-
-        <div class="hud">
-          <div class="pill" id="pillScore">Score: 0</div>
-          <div class="pill" id="pillStreak">Streak: 0</div>
-          <div class="pill" id="pillTime">Time: 0s</div>
-          <div class="pill" id="pillAch">Ach: —</div>
-          <div class="pill" id="pillDifficulty">Difficulty: Medium</div>
-          <div class="pill" id="pillCategory">Category: —</div>
-          <div class="bar" title="Lives remaining"><div id="lifeBar"></div></div>
-          <div class="pill" id="pillLives">Lives: 6</div>
-          <div class="pill" id="pillWrong">Wrong: —</div>
-        </div>
-
-        <div class="word" id="word"></div>
-        <div class="status" id="status"><span id="srStatus" class="sr-only" aria-live="assertive"></span>Press a letter or click the keyboard.</div>
-        <div class="keyboard" id="keyboard" role="group" aria-label="On screen keyboard"></div>
-      </section>
-
-      
-      <aside class="card" id="learnPanel" style="display:none">
-        <h2>Learning Mode</h2>
-        <p class="muted">
-          Each step explains what the game logic is doing, in simple terms.
-        </p>
-        <ul class="muted" id="learnSteps"></ul>
-      </aside>
-
-        <h2>How it works</h2>
-        <p class="muted">
-          This simulator shows state changes: wrong guesses, lives, and discovered letters.
-        </p>
-        <div class="muted" id="hintLine"></div>
-        <div class="muted" style="margin-top:10px">
-          <b>Rules:</b><br/>
-          Correct +10 • Wrong -2 • Win +25 • Hint costs 1 life
-        </div>
-      </aside>
-    </main>
-    <footer class="footer">
-      <span class="muted">Built for learning • Hangman Simulator</span>
-      <span class="muted">Tip: pin this repo on your GitHub profile</span>
-    </footer>
-  </div>
-
-  
-  
-  <div class="modal" id="customModal" aria-hidden="true">
-    <div class="modalCard" role="dialog" aria-modal="true" aria-labelledby="customTitle">
-      <div class="modalTop">
-        <h3 id="customTitle">Set a Custom Word</h3>
-        <button class="iconBtn" id="btnCustomClose" aria-label="Close">✕</button>
       </div>
-      <div class="modalBody">
-        <p class="muted">Use letters and spaces only. Example: <b>DATA STRUCTURES</b></p>
-        <input id="customInput" class="select" style="width:100%" placeholder="Type your word..." />
-        <div class="muted" style="margin-top:8px" id="customMsg"></div>
+      <div class="attempt-rail" id="attemptRail"></div>
+      <p class="coordinates">40.7128° N &nbsp; / &nbsp; 74.0060° W</p>
+    </section>
+
+    <section class="console">
+      <div class="eyebrow"><span id="caseNo">CASE #0000</span><span class="difficulty" id="difficultyLabel">OPERATIVE</span></div>
+      <h1>DECODE THE<br><em>UNKNOWN.</em></h1>
+      <div class="category-line"><span>CATEGORY</span><b id="category">—</b></div>
+      <div class="word" id="word" aria-label="Hidden word"></div>
+      <div class="clue-panel">
+        <div class="clue-head"><span>CASE INTELLIGENCE</span><b id="clueCount">0 / 3 CLUES</b></div>
+        <div class="clues" id="clues"><p>Select an operation to receive case intelligence.</p></div>
       </div>
-      <div class="modalActions">
-        <button class="btn" id="btnCustomStart" disabled>Start</button>
+      <div class="keyboard" id="keyboard"></div>
+      <div class="action-row">
+        <button class="secondary" id="clueBtn"><span>◎</span> NEXT CLUE <small>− 30</small></button>
+        <button class="secondary" id="hintBtn"><span>⌾</span> REVEAL LETTER <small>− 120</small></button>
+        <button class="primary" id="newGameBtn">NEW CASE <span>↗</span></button>
       </div>
+      <div class="metrics">
+        <div><span>STREAK</span><b id="streak">00</b></div>
+        <div><span>SOLVED</span><b id="solved">00</b></div>
+        <div><span>CREDITS</span><b id="score">0000</b></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="start-screen" id="startScreen">
+    <div class="start-copy">
+      <p class="kicker">AN ORIGINAL CINEMATIC WORD EXPERIENCE</p>
+      <h2>EVERY LETTER<br>BUYS <em>TIME.</em></h2>
+      <p class="intro">A signal is buried in the city. Recover the word before the final light goes out.</p>
+      <div class="mode-select" id="modeSelect">
+        <button data-mode="rookie"><b>ROOKIE</b><span>10 attempts · easier intel</span></button>
+        <button class="active" data-mode="operative"><b>OPERATIVE</b><span>8 attempts · balanced</span></button>
+        <button data-mode="nightmare"><b>NIGHTMARE</b><span>6 attempts · rare words</span></button>
+      </div>
+      <button class="launch" id="launchBtn">INITIATE PROTOCOL <span>→</span></button>
+      <button class="demo-btn" id="demoBtn"><span>▶</span> WATCH INTERACTIVE DEMO</button>
+      <p class="key-help">Use your keyboard or tap the on-screen controls</p>
     </div>
   </div>
 
-<div class="modal" id="helpModal" aria-hidden="true">
-    <div class="modalCard" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
-      <div class="modalTop">
-        <h3 id="helpTitle">Help & Shortcuts</h3>
-        <button class="iconBtn" id="btnHelpClose" aria-label="Close">✕</button>
-      </div>
-      <div class="modalBody">
-        <ul>
-          <li><b>Click</b> letters or type on keyboard.</li>
-          <li><b>Enter</b>: New game</li>
-          <li><b>H</b>: Hint (costs 1 life)</li>
-          <li><b>Backspace</b>: Reveal</li>
-        </ul>
-        <p class="muted">Tip: Wrong guesses draw the hangman. Win gives bonus points.</p>
-      </div>
-      <div class="modalActions">
-        <button class="btn danger" id="btnResetStats">Reset Stats</button>
-        <button class="btn danger" id="btnResetAll">Reset All</button>
-        <button class="btn" id="btnExport">Export Stats</button>
-        <button class="btn" id="btnImport">Import Stats</button>
-        <input id="importFile" type="file" accept="application/json" style="display:none" />
-        <button class="btn" id="btnHelpOk">Got it</button>
-      </div>
-    </div>
-  </div>
+  <dialog id="resultDialog">
+    <button class="dialog-close" id="dialogClose" aria-label="Close">×</button>
+    <p class="kicker" id="resultKicker">CASE RESOLVED</p>
+    <h2 id="resultTitle">SIGNAL<br>RECOVERED</h2>
+    <p id="resultText"></p>
+    <div class="result-score"><span>CREDITS EARNED</span><b id="earned">+000</b></div>
+    <section class="knowledge-card">
+      <div class="knowledge-label">KNOWLEDGE UNLOCKED</div><h3 id="learnWord">—</h3><p id="learnDefinition"></p>
+      <dl><div><dt>WORD ORIGIN</dt><dd id="learnOrigin"></dd></div><div><dt>IN CONTEXT</dt><dd id="learnExample"></dd></div></dl>
+      <p class="memory" id="learnMemory"></p>
+    </section>
+    <button class="launch" id="continueBtn">CONTINUE THE HUNT <span>→</span></button>
+  </dialog>
 
+  <dialog id="statsDialog" class="stats-dialog">
+    <button class="dialog-close" id="statsClose" aria-label="Close">×</button>
+    <p class="kicker">OPERATIVE CASE FILE</p><h2>YOUR RECORD</h2>
+    <div class="stat-grid"><div><b id="statPlayed">0</b><span>PLAYED</span></div><div><b id="statWin">0%</b><span>WIN RATE</span></div><div><b id="statBest">0</b><span>BEST STREAK</span></div><div><b id="statCredits">0</b><span>CREDITS</span></div></div>
+  </dialog>
 
-<div id="toast" class="toast" aria-live="polite" aria-atomic="true">
-    <span id="toastTag" class="toastTag">Info</span>
-    <span id="toastText">…</span>
-  </div>
-
-  <script src="app.js"></script>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="demo-coach" id="demoCoach"><b>DEMO MODE</b><p id="demoText"></p><button id="skipDemo">SKIP DEMO ×</button></div>
+  <script src="game.js"></script>
 </body>
 </html>
